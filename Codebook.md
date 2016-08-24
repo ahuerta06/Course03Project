@@ -1,4 +1,6 @@
 ##tidyData.txt Codebook
+
+To learn more about original data, you can go to <http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones>
 <dl>
 	<dt>1. subject</dt>
 		<dd>integer</dd>
