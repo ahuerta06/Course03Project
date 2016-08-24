@@ -10,12 +10,16 @@ library(RCurl)
 library(dplyr)
 library(reshape2)
 
-# Download and unzip the files
 URL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 zipFile = "./data/UCI HAR Dataset.zip"
-download.file(URL, zipFile)
-outDir <- "./data"
-unzip(zipFile,exdir=outDir)
+# Download and unzip the files
+if(!file.exists(zipFile)) {
+    print("File doesn´t exist. It will be downloaded.")
+    download.file(URL, zipFile)
+    outDir <- "./data"
+    unzip(zipFile,exdir=outDir)
+} else print("File is already exists. Nothing was downloaded.")
+
 
 # Read into a vector the file with the names of the columns.
 colNames <- read.table("./data/UCI HAR Dataset/features.txt")
@@ -89,4 +93,5 @@ print("HARUS data ready")
 # Get the average of all the columns, grouping by subject and activity, and save it to a text file
 harus_agg <- harus %>% group_by(subject, activity) %>% summarise_all(funs(mean))
 write.table(harus_agg, "tidyData.txt", row.name=FALSE)
+
 print(paste("The file 'tidyData.txt' has been created in ", getwd()))
