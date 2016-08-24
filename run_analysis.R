@@ -1,14 +1,12 @@
 ###########################################################################################
-# NOTE: This code needs the packages RCurl, dplyr and reshape2. 
+# NOTE: This code needs the packages RCurl, dplyr. 
 # Please install them before runing it
 # install.packages("RCurl")
 # install.packages("dplyr")
-# install.packages("reshape2")
 ###########################################################################################
 
 library(RCurl)
 library(dplyr)
-library(reshape2)
 
 URL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 zipFile = "./data/UCI HAR Dataset.zip"
@@ -18,7 +16,7 @@ if(!file.exists(zipFile)) {
     download.file(URL, zipFile)
     outDir <- "./data"
     unzip(zipFile,exdir=outDir)
-} else print("File is already exists. Nothing was downloaded.")
+} else print("File already exists. Nothing was downloaded.")
 
 
 # Read into a vector the file with the names of the columns.
